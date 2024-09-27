@@ -5,18 +5,18 @@ namespace DSOO_clubdeportivo
 {
     internal class Socio 
     {
+        private static int contadorIdSocio = 0;
         public int idSocio { get; private set; }
         public string nombre { get; private set; }
         public string apellido { get; private set; }
         public string dni { get; private set; }
-        public int tel { get; private set; }
+        public string tel { get; private set; }
         public string email { get; private set; }
         public DateTime fechaRegistro { get; private set; }
         public List<Actividad> actividadesInscriptas { get; private set; }
-        private static int contadorIdSocio = 0;
 
         // Constructor
-        public Socio(string nombre, string apellido, string dni, int tel, string email, List<Actividad> actividadesInscriptas)
+        public Socio(string nombre, string apellido, string dni, string tel, string email, List<Actividad> actividadesInscriptas)
         {
             this.idSocio = GenerarIdUsuario(); 
             this.nombre = nombre;

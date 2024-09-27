@@ -33,7 +33,7 @@ namespace DSOO_clubdeportivo
         }
 
         // Registrar un nuevo socio
-        public string altaSocio(string nombre, string apellido, string dni, int tel, string email)
+        public string altaSocio(string nombre, string apellido, string dni, string tel, string email)
 		{
 			// Verificar si el socio ya existe
 			if (BuscarSocioDni(dni) != null)

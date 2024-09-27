@@ -19,10 +19,10 @@ namespace ClubDeportivoApp
             registroClub.AgregarActividad(4, "KARATE", new TimeSpan(9, 30, 0), new List<DayOfWeek> { DayOfWeek.Monday, DayOfWeek.Thursday }, 60, 12);
             
             // Precarga de socios
-            registroClub.altaSocio("Juan", "Pérez", "12345678", 123456789, "juanperez@gmail.com");
-            registroClub.altaSocio("Ana", "Gómez", "87654321", 987654321, "anagomez@gmail.com");
-            registroClub.altaSocio("Julieta", "López", "26478541", 223469854, "julietalopez@gmail.com");
-            registroClub.altaSocio("Facundo", "Martínez", "33697458", 115258525, "facundomartinez@gmail.com");
+            registroClub.altaSocio("Juan", "Pérez", "12345678", "123456789", "juanperez@gmail.com");
+            registroClub.altaSocio("Ana", "Gómez", "87654321", "987654321", "anagomez@gmail.com");
+            registroClub.altaSocio("Julieta", "López", "26478541", "223469854", "julietalopez@gmail.com");
+            registroClub.altaSocio("Facundo", "Martínez", "33697458", "115258525", "facundomartinez@gmail.com");
            
 
             // Menú de consola
@@ -96,7 +96,7 @@ namespace ClubDeportivoApp
             Console.Write("DNI: ");
             string dni = Console.ReadLine();
             Console.Write("Teléfono: ");
-            int telefono = int.Parse(Console.ReadLine());
+            string telefono = Console.ReadLine();
             Console.Write("Email: ");
             string email = Console.ReadLine();
      
