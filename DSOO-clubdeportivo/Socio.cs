@@ -28,6 +28,7 @@ namespace DSOO_clubdeportivo
             this.actividadesInscriptas = actividadesInscriptas;
         }
 
+
         // Generar un nuevo IdUsuario
         private int GenerarIdUsuario()
         {
