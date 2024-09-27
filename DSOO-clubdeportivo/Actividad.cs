@@ -50,19 +50,7 @@ namespace DSOO_clubdeportivo
             }
         }
 
-        //// ToString
-        //public override string ToString()
-        //{
-        //    return $" IdActividad: {idActividad}\n  " +
-        //            $"Actividad: {nombreActividad}\n  " +
-        //            $"Horario: {horarioActividad}\n  " +
-        //            $"Días: {string.Join(", ", diasActividad)}\n  " +
-        //            $"Duración: {duracionMinutos} minutos\n  " +
-        //            $"Cupos Máximos: {maxParticipantes}\n  " +
-        //            $"Cupos Libres: {cuposLibres}\n";
-        //}
-
-
+  
         // Convertir días del ingles al español
         private string ConvertirDiaA_Espanol(DayOfWeek dia)
         {
