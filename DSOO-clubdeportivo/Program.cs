@@ -15,7 +15,7 @@ namespace ClubDeportivoApp
             // Precarga de actividades
             registroClub.AgregarActividad(1, "FUTBOL", new TimeSpan(18, 0, 0), new List<DayOfWeek> { DayOfWeek.Monday, DayOfWeek.Wednesday }, 90, 20);
             registroClub.AgregarActividad(2, "NATACION", new TimeSpan(17, 0, 0), new List<DayOfWeek> { DayOfWeek.Tuesday, DayOfWeek.Thursday }, 45, 10);
-            registroClub.AgregarActividad(3, "TENIS", new TimeSpan(19, 0, 0), new List<DayOfWeek> { DayOfWeek.Friday }, 45, 8);
+            registroClub.AgregarActividad(3, "TENIS", new TimeSpan(19, 0, 0), new List<DayOfWeek> { DayOfWeek.Friday }, 45, 2);
             registroClub.AgregarActividad(4, "KARATE", new TimeSpan(9, 30, 0), new List<DayOfWeek> { DayOfWeek.Monday, DayOfWeek.Thursday }, 60, 12);
             
             // Precarga de socios
@@ -196,10 +196,12 @@ namespace ClubDeportivoApp
             Console.Write("Ingrese el nombre de la actividad: ");
             string nombreActividad = Console.ReadLine();
 
-            List<string> sociosInscriptos = registro.ListarSociosInscriptosEnActividad(nombreActividad);
+            var (sociosInscriptos, cuposLibres) = registro.ListarSociosInscriptosEnActividad(nombreActividad);
             int cantInscriptos = sociosInscriptos.Count;
 
-            Console.WriteLine($"\n  Cantidad de Socios inscritos en {nombreActividad}: {cantInscriptos}\n");
+
+            Console.WriteLine($"\n  Cantidad de Socios inscritos en {nombreActividad.ToUpper()}: {cantInscriptos}");
+            Console.WriteLine($"\n  Cantidad de cupos disponibles: {cuposLibres}");
             Console.WriteLine($"\n * Listado de Socios *\n");
 
             foreach (var detalle in sociosInscriptos)

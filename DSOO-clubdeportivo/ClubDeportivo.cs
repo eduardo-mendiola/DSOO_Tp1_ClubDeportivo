@@ -38,7 +38,7 @@ namespace DSOO_clubdeportivo
 			// Verificar si el socio ya existe
 			if (BuscarSocioDni(dni) != null)
 			{
-				return "SOCIO YA EXISTE";
+				return "\n ¡SOCIO YA EXISTE!";
 			}
 
 			List<Actividad> actividadesInscriptas = new List<Actividad>();
@@ -46,7 +46,7 @@ namespace DSOO_clubdeportivo
 			Socio nuevoSocio = new Socio(nombre, apellido, dni, tel, email, actividadesInscriptas);
 			socios.Add(nuevoSocio);
 
-			return "SOCIO REGISTRADO EXITOSAMENTE";
+			return "\n ¡SOCIO REGISTRADO EXITOSAMENTE!";
 		}
 
 		// Buscar una actividad por nombre
@@ -61,12 +61,12 @@ namespace DSOO_clubdeportivo
 			// Verificar si ya existe una actividad con el mismo ID
 			if (BuscarActividadPorNombre(nombreActividad) != null)
 			{
-				return "ACTIVIDAD YA EXISTE";
+				return "\n ¡ACTIVIDAD YA EXISTE!";
 			}
 
 			Actividad nuevaActividad = new Actividad(idActividad, nombreActividad, horarioActividad, diasActividad, duracionMinutos, maxParticipantes);
 			actividades.Add(nuevaActividad);
-			return "ACTIVIDAD REGISTRADA EXITOSAMENTE";
+			return "\n ** ACTIVIDAD REGISTRADA EXITOSAMENTE **";
 		}
 
 		// Inscribir a un socio en una actividad
@@ -75,30 +75,30 @@ namespace DSOO_clubdeportivo
 			Socio socio = BuscarSocio(idSocio);
 			if (socio == null)
 			{
-				return "SOCIO INEXISTENTE";
+				return "\n ¡SOCIO INEXISTENTE!";
 			}
 
 			if (socio.actividadesInscriptas.Count >= maxInsPorSocio)
 			{
-				return "TOPE DE ACTIVIDADES ALCANZADO";
+				return "\n ¡NO SE PUDO INSCRIBIR AL USUARIO!\n TOPE DE ACTIVIDADES ALCANZADO";
 			}
 
 			Actividad actividad = BuscarActividadPorNombre(nombreActividad);
 			if (actividad == null)
 			{
-				return "ACTIVIDAD INEXISTENTE";
+				return "\n ¡ACTIVIDAD INEXISTENTE!";
 			}
 
 			if (!actividad.VerificarDisponibilidad())
 			{
-				return "NO HAY CUPOS DISPONIBLES";
+				return "\n ¡NO HAY CUPOS DISPONIBLES!";
 			}
 
 			// Inscribir al socio en la actividad
 			actividad.RegistrarInscripcionSocio(socio);
 			socio.actividadesInscriptas.Add(actividad);
 
-			return "INSCRIPCIÓN EXITOSA";
+			return "\n ** INSCRIPCIÓN EXITOSA **";
 		}
 
         // Listar todos los socios
@@ -124,14 +124,15 @@ namespace DSOO_clubdeportivo
         }
 
 		// Listar socios inscriptos en una determinada actividad
-        public List<string> ListarSociosInscriptosEnActividad(string nombreActividad)
+        public (List<string>, int cuposLibres) ListarSociosInscriptosEnActividad(string nombreActividad)
         {
             Actividad actividad = BuscarActividadPorNombre(nombreActividad);
             List<string> detallesSociosInscriptos = new List<string>();
+            int cuposLibres = 0;
 
             if (actividad == null)
             {
-                return new List<string> { "ACTIVIDAD NO ENCONTRADA" };
+                return (new List<string> { "\n ¡ACTIVIDAD NO ENCONTRADA!"}, cuposLibres);
             }
 			         
             foreach (var socio in socios)
@@ -142,12 +143,14 @@ namespace DSOO_clubdeportivo
                 }
             }
 
+            cuposLibres = actividad.cuposLibres;
+
             if (detallesSociosInscriptos.Count == 0)
             {
-                detallesSociosInscriptos.Add("* ¡NO HAY SOCIOS INSCRIPTOS EN ESTA ACTIVIDAD! *");
+                detallesSociosInscriptos.Add("\n ¡NO HAY SOCIOS INSCRIPTOS EN ESTA ACTIVIDAD!");
             }
 
-            return detallesSociosInscriptos;
+            return (detallesSociosInscriptos, cuposLibres);
         }
 
 
