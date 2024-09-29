@@ -80,7 +80,7 @@ namespace DSOO_clubdeportivo
 
 			if (socio.actividadesInscriptas.Count >= maxInsPorSocio)
 			{
-				return "\n ¡NO SE PUDO INSCRIBIR AL USUARIO!\n TOPE DE ACTIVIDADES ALCANZADO";
+				return "\n ¡NO SE PUDO INSCRIBIR AL SOCIO!\n  TOPE DE ACTIVIDADES ALCANZADO";
 			}
 
 			Actividad actividad = BuscarActividadPorNombre(nombreActividad);
@@ -132,7 +132,7 @@ namespace DSOO_clubdeportivo
 
             if (actividad == null)
             {
-                return (new List<string> { "\n ¡ACTIVIDAD NO ENCONTRADA!"}, cuposLibres);
+                return (new List<string> (), cuposLibres);
             }
 			         
             foreach (var socio in socios)

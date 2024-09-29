@@ -16,7 +16,7 @@ namespace ClubDeportivoApp
             registroClub.AgregarActividad(1, "FUTBOL", new TimeSpan(18, 0, 0), new List<DayOfWeek> { DayOfWeek.Monday, DayOfWeek.Wednesday }, 90, 20);
             registroClub.AgregarActividad(2, "NATACION", new TimeSpan(17, 0, 0), new List<DayOfWeek> { DayOfWeek.Tuesday, DayOfWeek.Thursday }, 45, 10);
             registroClub.AgregarActividad(3, "TENIS", new TimeSpan(19, 0, 0), new List<DayOfWeek> { DayOfWeek.Friday }, 45, 2);
-            registroClub.AgregarActividad(4, "KARATE", new TimeSpan(9, 30, 0), new List<DayOfWeek> { DayOfWeek.Monday, DayOfWeek.Thursday }, 60, 12);
+            registroClub.AgregarActividad(4, "KARATE", new TimeSpan(9, 30, 0), new List<DayOfWeek> { DayOfWeek.Monday, DayOfWeek.Thursday }, 60, 4);
             
             // Precarga de socios
             registroClub.altaSocio("Juan", "Pérez", "12345678", "123456789", "juanperez@gmail.com");
@@ -77,7 +77,7 @@ namespace ClubDeportivoApp
                         Console.WriteLine("*-------------------------------------*\n");
                         break;
                     default:
-                        Console.WriteLine("Opción inválida. Intente de nuevo.");
+                        Console.WriteLine("\n ¡OPCIÓN INVÁLIDA. INTÉNTELO DE NUEVO!");
                         break;
                 }
             }
@@ -197,20 +197,27 @@ namespace ClubDeportivoApp
             string nombreActividad = Console.ReadLine();
 
             var (sociosInscriptos, cuposLibres) = registro.ListarSociosInscriptosEnActividad(nombreActividad);
-            int cantInscriptos = sociosInscriptos.Count;
+            int tamanoLista = sociosInscriptos.Count;
+            int contSociosInscriptos = 0;
 
-
-            Console.WriteLine($"\n  Cantidad de Socios inscritos en {nombreActividad.ToUpper()}: {cantInscriptos}");
-            Console.WriteLine($"\n  Cantidad de cupos disponibles: {cuposLibres}");
-            Console.WriteLine($"\n * Listado de Socios *\n");
-
-            foreach (var detalle in sociosInscriptos)
+            if (tamanoLista > 0)
             {
-                Console.WriteLine($"  {detalle}");
+                Console.WriteLine($"\n * Listado de Socios *\n");
+
+                foreach (var detalle in sociosInscriptos)
+                {
+                    Console.WriteLine($"  {detalle}");
+                    contSociosInscriptos++;
+                }
             }
+            else
+            {
+                Console.WriteLine("\n ¡ACTIVIDAD NO ENCONTRADA!");
+            }
+            Console.WriteLine($"\n  Cantidad de Socios inscritos en {nombreActividad.ToUpper()}: {contSociosInscriptos}");
+            Console.WriteLine($"\n  Cantidad de cupos disponibles: {cuposLibres}");
+
         }
-
-
     }
     
 }
